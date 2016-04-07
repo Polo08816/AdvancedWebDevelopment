@@ -1,0 +1,12 @@
+<h1>New List</h1>
+
+
+<%= form_for @list  do |f| %>
+    List Name <%= f.text_field(:name) %><br/>
+
+<%end%>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', lists_path %>
+

@@ -13,17 +13,19 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.all
+    @lists_id = params[:id]
+    lists = List.find_by_id(@lists_id)
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.find(params[:id])
+    @items = Item.find_by(:list_id=>params[:id])
   end
 
   # GET /items/new
   def new
-    @item = Item.new
+    @item = Item.new()
   end
 
   # GET /items/1/edit

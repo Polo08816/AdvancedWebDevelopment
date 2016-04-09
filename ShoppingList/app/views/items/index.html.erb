@@ -8,7 +8,6 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:list_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,8 +16,7 @@
       <tr>
         <td><%= link_to item.id, item_path(item) %></td>
         <td><%= item.name %></td>
-        <td><%= item.list_id %></td>
-        <td><%=l item.created_at %></td>
+        <td><%= List.find(item.list_id).name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_item_path(item), :class => 'btn btn-default btn-xs' %>
@@ -27,8 +25,8 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
-          <%= link_to 'View Tiems',
-                      url_for(controller: 'items', action: 'index', id:List.id) %>
+          <%= link_to 'View Items',
+                      url_for(controller: 'items', action: 'index', id:item.list_id) %>
         </td>
       </tr>
     <% end %>
@@ -38,3 +36,5 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_item_path,
             :class => 'btn btn-primary' %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+            lists_path, :class => 'btn btn-default'  %>

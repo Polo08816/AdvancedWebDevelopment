@@ -1,25 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Items</h1>
+<h1>Lists</h1>
 
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>List Name</th>
+      <th colspan="10"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= list.name %></td>
+        <td><%= link_to ' Show ', url_for(controller: 'lists', action: 'show', id: list.id) %></td>
+        <td><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_list_path(list), :class => 'btn btn-default btn-xs' %></td>
+        <td><%= link_to ' Destroy ', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br/>
 
 <%= link_to 'New List', new_list_path %>

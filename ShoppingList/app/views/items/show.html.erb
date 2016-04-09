@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @item.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:list_id) %>:</strong></dt>
-  <dd><%= @item.list_id %></dd>
+  <dd><%= List.find(@item.list_id).name %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

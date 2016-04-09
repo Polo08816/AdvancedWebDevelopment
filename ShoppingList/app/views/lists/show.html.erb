@@ -1,4 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Items in List</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Item Name</th>
+    <th colspan="10"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Item.all.each do |item| %>
+      <tr>
+        <td> <%= item.name %> </td>
+        <td> <%= link_to ' Show ', url_for(controller: 'items', action: 'show', id:item.id) %> </td>
+        <td> <%= link_to ' Edit ', edit_item_path(item) %> </td>
+        <td> <%= link_to ' Destroy ', item, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Item', new_item_path %>
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>

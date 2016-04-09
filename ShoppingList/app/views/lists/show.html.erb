@@ -12,12 +12,14 @@
 
   <tbody>
   <% Item.all.each do |item| %>
+    <% if item.list_id == (params[:id]).to_i %>
       <tr>
         <td> <%= item.name %> </td>
-        <td> <%= link_to ' Show ', url_for(controller: 'items', action: 'show', id:item.id) %> </td>
+        <td> <%= link_to ' Show ', url_for(controller: 'items', action: 'show', id: item.id) %> </td>
         <td> <%= link_to ' Edit ', edit_item_path(item) %> </td>
         <td> <%= link_to ' Destroy ', item, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
       </tr>
+  <%end%>
   <% end %>
   </tbody>
 </table>
